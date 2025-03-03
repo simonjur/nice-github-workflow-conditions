@@ -9,12 +9,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: vars
         id: vars
         shell: bash
         run: |
-          first_name="John" >> $GITHUB_OUTPUT
-          last_name="Doe" >> $GITHUB_OUTPUT
+          echo "first_name=John" >> $GITHUB_OUTPUT
+          echo "last_name=Doe" >> $GITHUB_OUTPUT
 
       - name: summary
         if: steps.vars.outputs.first_name == 'John' && steps.vars.outputs.last_name == 'Doe'
