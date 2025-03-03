@@ -44,5 +44,15 @@ jobs:
           echo ''
           echo 'JSON summary' >> $GITHUB_STEP_SUMMARY
           echo '```json' >> $GITHUB_STEP_SUMMARY
-          echo ${{ toJSON(fromJSON(steps.vars.outputs.custom_json)) }} >> $GITHUB_STEP_SUMMARY
+          echo ${{ steps.vars.outputs.custom_json }} >> $GITHUB_STEP_SUMMARY
+          echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: negative condition
+        if: ${{ ! fromJSON(steps.vars.outputs.custom_json).key == 'something' }}
+        shell: bash
+        run: |
+          echo ''
+          echo 'JSON summary2' >> $GITHUB_STEP_SUMMARY
+          echo '```json' >> $GITHUB_STEP_SUMMARY
+          echo ${{ steps.vars.outputs.custom_json }} >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
