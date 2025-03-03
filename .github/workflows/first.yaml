@@ -82,3 +82,17 @@ jobs:
         run: |
           echo ''
           echo 'faulty multiline condition' >> $GITHUB_STEP_SUMMARY
+
+      - name: structured multiline compound condition
+        if: |
+          fromJSON(steps.vars.outputs.custom_json).key == 'value' && 
+          (
+            inputs.first_name == 'John' ||
+            inputs.last_name == 'Doe'
+          ) &&
+          github.event_name == 'workflow_dispatch'
+        shell: bash
+        run: |
+          echo ''
+          echo 'structured multiline compound condition' >> $GITHUB_STEP_SUMMARY
+          
