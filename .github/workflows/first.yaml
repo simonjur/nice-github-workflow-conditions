@@ -42,10 +42,17 @@ jobs:
         shell: bash
         run: |
           echo ''
-          echo 'JSON summary' >> $GITHUB_STEP_SUMMARY
+          echo 'JSON summary (positive condition)' >> $GITHUB_STEP_SUMMARY
           echo '```json' >> $GITHUB_STEP_SUMMARY
           echo ${{ steps.vars.outputs.custom_json }} >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
+
+      - name: faulty condition
+        if: ${{ !fromJSON(steps.vars.outputs.custom_json).key == 'something' }}
+        shell: bash
+        run: |
+          echo ''
+          echo 'faulty condition' >> $GITHUB_STEP_SUMMARY
 
       - name: negative condition
         if: ${{ !(fromJSON(steps.vars.outputs.custom_json).key == 'something') }}
