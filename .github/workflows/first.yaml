@@ -34,4 +34,4 @@ jobs:
         if: steps.vars.outputs.custom_var != '' && inputs.first_name == 'John' && inputs.last_name == 'Doe' && github.event_name == 'workflow_dispatch'
         shell: bash
         run: |
-          echo 'Hello, ${{ steps.vars.outputs.first_name }} ${{ steps.vars.outputs.last_name }}!' >> $GITHUB_STEP_SUMMARY
+          echo 'Hello, ${{ inputs.first_name }} ${{ inputs.last_name }}!' >> $GITHUB_STEP_SUMMARY
