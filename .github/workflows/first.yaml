@@ -31,13 +31,13 @@ jobs:
           echo "custom_var=Something" >> $GITHUB_OUTPUT
           echo "custom_json={\"key\":\"value\"}" >> $GITHUB_OUTPUT
 
-      - name: summary on workflow dispatch
+      - name: compound condition
         if: steps.vars.outputs.custom_var != '' && inputs.first_name == 'John' && inputs.last_name == 'Doe' && github.event_name == 'workflow_dispatch'
         shell: bash
         run: |
           echo 'Hello, ${{ inputs.first_name }} ${{ inputs.last_name }}!' >> $GITHUB_STEP_SUMMARY
 
-      - name: json summary
+      - name: positive condition
         if: fromJSON(steps.vars.outputs.custom_json).key == 'value'
         shell: bash
         run: |
