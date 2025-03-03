@@ -87,7 +87,7 @@ jobs:
         if: |
           fromJSON(steps.vars.outputs.custom_json).key == 'value' && 
           (
-            inputs.first_name == 'John' ||
+            startsWith(inputs.first_name, 'J') ||
             inputs.last_name == 'Doe'
           ) &&
           github.event_name == 'workflow_dispatch'
