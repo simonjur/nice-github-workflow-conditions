@@ -44,5 +44,5 @@ jobs:
           echo ''
           echo 'JSON summary' >> $GITHUB_STEP_SUMMARY
           echo '```json' >> $GITHUB_STEP_SUMMARY
-          echo ${{ steps.vars.outputs.custom_json }} >> $GITHUB_STEP_SUMMARY
+          echo ${{ toJSON(fromJSON(steps.vars.outputs.custom_json)) }} >> $GITHUB_STEP_SUMMARY
           echo '```' >> $GITHUB_STEP_SUMMARY
