@@ -81,4 +81,4 @@ jobs:
         shell: bash
         run: |
           echo ''
-          echo 'multiline condition' >> $GITHUB_STEP_SUMMARY
+          echo 'faulty multiline condition' >> $GITHUB_STEP_SUMMARY
